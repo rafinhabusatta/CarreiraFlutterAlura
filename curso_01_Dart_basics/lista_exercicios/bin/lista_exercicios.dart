@@ -377,7 +377,7 @@
 //   print(mes);
 // }
 // 4.4) Criando a função de depósito e fazendo sua validação
-import 'dart:io';
+/*import 'dart:io';
 
 void main() {
   List<String> operacoesValidas = [
@@ -404,4 +404,59 @@ void main() {
   }
 
   getOperacao();
+}*/
+
+// 4.5) Validação de métodos de pagamento em uma plataforma de e-commerce
+/*import 'dart:io';
+
+void main() {
+  List<String> metodosPagamentoValidos = <String>[
+    'cartao',
+    'boleto',
+    'pix',
+    'paypal',
+  ];
+  String? metodoPagamento = "";
+
+  void getMetodoPagamento() {
+    print("Digite um método de pagamento (cartao, boleto, pix, paypal):");
+    metodoPagamento = stdin.readLineSync();
+    if (metodosPagamentoValidos.contains(metodoPagamento!.toLowerCase())) {
+      print("Método de pagamento '$metodoPagamento' válido.");
+    } else {
+      print(
+        "Método de pagamento inválido. Os métodos válidos são: cartao, boleto, pix, paypal.",
+      );
+      getMetodoPagamento();
+    }
+  }
+
+  getMetodoPagamento();
+}*/
+
+// 5.1) Imprimindo números no terminal
+/*void main() {
+  for (int i = 0; i < 5; i++) {
+    print(i + 1);
+  }
+}*/
+
+// 5.2) Mostrando nomes no terminal
+/*void main() {
+  List<String> nomes = <String>["Ana", "Rafael", "Marcelo"];
+  for (int i = 0; i < nomes.length; i++) {
+    print(nomes[i]);
+  }
+}*/
+
+// 5.3) Em busca da parada
+void main() {
+  String frase = "Parou! Este código não continua.";
+
+  for (String letra in frase.split('')) {
+    if (letra == "!") {
+      break;
+    }
+    print(letra);
+  }
 }
