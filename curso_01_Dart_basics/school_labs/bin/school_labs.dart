@@ -85,6 +85,8 @@ void menu(List<List<double>> notas, List<String> alunos) {
     case '3':
       print("Finalizando...");
       exit(0);
+    default:
+      print("Ação inválida.");
   }
 }
 
