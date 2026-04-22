@@ -40,9 +40,9 @@ void main() {
     );
   }
 
-  smartphone.entradaEstoque(smartphone, 20);
-  notebook.saidaEstoque(notebook, 10);
-  monitor.alteraPreco(monitor, 2000);
+  smartphone.entradaEstoque(20);
+  notebook.saidaEstoque(10);
+  monitor.alteraPreco(2000);
 }
 
 class ItemEstoque {
@@ -56,28 +56,26 @@ class ItemEstoque {
     required this.preco,
   });
 
-  void entradaEstoque(ItemEstoque item, int quantidade) {
-    item.quantidade += quantidade;
+  void entradaEstoque(int quantidade) {
+    this.quantidade += quantidade;
     print(
-      "Registro de entrada: Nova quantidade do item ${item.nome}: ${item.quantidade}",
+      "Registro de entrada: Nova quantidade do item $nome: ${this.quantidade}",
     );
   }
 
-  void saidaEstoque(ItemEstoque item, int quantidade) {
+  void saidaEstoque(int quantidade) {
     if (this.quantidade >= quantidade) {
-      item.quantidade -= quantidade;
+      this.quantidade -= quantidade;
       print(
-        "Registro de saída:Nova quantidade do item ${item.nome}: ${item.quantidade}",
+        "Registro de saída:Nova quantidade do item $nome: ${this.quantidade}",
       );
     } else {
       print("Quantidade insuficiente no estoque para sair");
     }
   }
 
-  void alteraPreco(ItemEstoque item, double preco) {
-    item.preco = preco;
-    print(
-      "Alteração de preço: Novo preço do item ${item.nome}: ${item.preco}:",
-    );
+  void alteraPreco(double preco) {
+    this.preco = preco;
+    print("Alteração de preço: Novo preço do item $nome: ${this.preco}:");
   }
 }
