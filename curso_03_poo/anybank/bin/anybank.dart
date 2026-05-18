@@ -10,6 +10,9 @@ void main() {
     "AnyBank",
   );
 
+  ContaEmpresa contaMatheus = ContaEmpresa("Matheus", 2000);
+  ContaInvestimento contaRoberta = ContaInvestimento("Roberta", 2000);
+
   contaChris.enviar(2700);
 
   contaDani.enviar(3300);
@@ -17,4 +20,7 @@ void main() {
   contaDani.getSaldo();
 
   contaSalarioCatarina.getSaldo();
+
+  contaMatheus.enviar(1000);
+  contaRoberta.receber(1000);
 }

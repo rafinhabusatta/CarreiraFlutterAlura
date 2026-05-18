@@ -58,3 +58,49 @@ class ContaSalario extends Conta {
     );
   }
 }
+
+mixin Imposto {
+  double taxa = 0.03;
+
+  double valorTaxado(double valor) {
+    return valor * taxa;
+  }
+}
+
+class ContaEmpresa extends Conta with Imposto {
+  ContaEmpresa(super.titular, super._saldo);
+
+  @override
+  void enviar(double valor) {
+    double valorComTaxa = valor + valorTaxado(valor);
+    if (_saldo >= valorComTaxa) {
+      _saldo -= valorComTaxa;
+      getSaldo();
+    }
+  }
+
+  @override
+  void receber(double valor) {
+    _saldo += valor - valorTaxado(valor);
+    getSaldo();
+  }
+}
+
+class ContaInvestimento extends Conta with Imposto {
+  ContaInvestimento(super.titular, super._saldo);
+
+  @override
+  void enviar(double valor) {
+    double valorComTaxa = valor + valorTaxado(valor);
+    if (_saldo >= valorComTaxa) {
+      _saldo -= valorComTaxa;
+      getSaldo();
+    }
+  }
+
+  @override
+  void receber(double valor) {
+    _saldo += valor - valorTaxado(valor);
+    getSaldo();
+  }
+}
