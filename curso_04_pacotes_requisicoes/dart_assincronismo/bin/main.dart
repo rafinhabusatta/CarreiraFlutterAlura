@@ -35,7 +35,7 @@ Future<List<dynamic>> requestDataAsync() async {
   return json.decode(response.body);
 }
 
-void sendDataAsync(Map<String, dynamic> mapAccount) async {
+Future<void> sendDataAsync(Map<String, dynamic> mapAccount) async {
   List<dynamic> listAccounts = await requestDataAsync();
   listAccounts.add(mapAccount);
   String content = json.encode(listAccounts);
