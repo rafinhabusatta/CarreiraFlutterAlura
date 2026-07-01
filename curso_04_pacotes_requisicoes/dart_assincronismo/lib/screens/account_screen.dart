@@ -13,7 +13,7 @@ class AccountScreen {
     });
   }
 
-  void runChatBot() {
+  void runChatBot() async {
     print("🦉Olá! Sou o Horácio, seu assistente no banco da Vida.");
     print("🐄Fico feliz em tê-lo conosco hoje.");
 
@@ -31,7 +31,7 @@ class AccountScreen {
         switch (input) {
           case '1':
             {
-              _getAllAccounts();
+              await _getAllAccounts();
               break;
             }
           case '2':
@@ -58,7 +58,7 @@ class AccountScreen {
                 balance = stdin.readLineSync();
               }
 
-              _addExampleAccount(name, lastName, double.parse(balance));
+              await _addExampleAccount(name, lastName, double.parse(balance));
               break;
             }
           case '3':
@@ -76,16 +76,17 @@ class AccountScreen {
     }
   }
 
-  Future<void> _getAllAccounts() async {
-    List<Account> listAccounts = await _accountService.getAll();
-    print(listAccounts);
+  _getAllAccounts() async {
+    try {
+      List<Account> listAccounts = await _accountService.getAll();
+      print(listAccounts);
+    } on Exception {
+      print("Não foi possível recuperar os dados das contas.");
+      print("Por favor, tente novamente mais tarde.");
+    }
   }
 
-  Future<void> _addExampleAccount(
-    String name,
-    String lastName,
-    double balance,
-  ) async {
+  _addExampleAccount(String name, String lastName, double balance) async {
     var uuid = Uuid();
     Account example = Account(
       id: uuid.v1(),
