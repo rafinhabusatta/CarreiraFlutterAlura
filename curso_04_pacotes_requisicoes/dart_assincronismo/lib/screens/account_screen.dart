@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dart_assincronismo/models/account.dart';
 import 'package:dart_assincronismo/services/account_service.dart';
+import 'package:uuid/uuid.dart';
 
 class AccountScreen {
   final AccountService _accountService = AccountService();
@@ -35,7 +36,29 @@ class AccountScreen {
             }
           case '2':
             {
-              _addExampleAccount();
+              print("Digite o nome da pessoa: ");
+              String? name = stdin.readLineSync();
+
+              while (name == null) {
+                print("Digite um nome válido: ");
+                name = stdin.readLineSync();
+              }
+              print("\nDigite o sobrenome: ");
+              String? lastName = stdin.readLineSync();
+
+              while (lastName == null) {
+                print("Digite um sobrenome válido: ");
+                lastName = stdin.readLineSync();
+              }
+              print("\nDigite o saldo: ");
+              String? balance = stdin.readLineSync();
+
+              while (balance == null) {
+                print("Digite um saldo válido: ");
+                balance = stdin.readLineSync();
+              }
+
+              _addExampleAccount(name, lastName, double.parse(balance));
               break;
             }
           case '3':
@@ -58,12 +81,17 @@ class AccountScreen {
     print(listAccounts);
   }
 
-  Future<void> _addExampleAccount() async {
+  Future<void> _addExampleAccount(
+    String name,
+    String lastName,
+    double balance,
+  ) async {
+    var uuid = Uuid();
     Account example = Account(
-      id: "ID555",
-      name: "Haley",
-      lastName: "Chirívia",
-      balance: 8001,
+      id: uuid.v1(),
+      name: name,
+      lastName: lastName,
+      balance: balance,
     );
 
     await _accountService.addAccount(example);
